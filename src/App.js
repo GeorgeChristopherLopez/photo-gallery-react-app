@@ -17,7 +17,7 @@ function App() {
             console.log(event.target.value);
             const term = event.target.value;
             setSearchTerm(searchTerm => term);
-           
+            
         }
     }
 

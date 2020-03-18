@@ -34,7 +34,7 @@ function Gallery(props) {
     
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedIndex , setSelectedIndex] = useState(0);
-    const [images, setImages] = useState(
+   const allImages =
         [
         {
                 src: photo01,
@@ -108,24 +108,31 @@ function Gallery(props) {
             caption: "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.",
             thumbnail: thumbnail12
         }
-        ]);
+        ];
+    const [images, setImages] = useState(allImages);
     
-
+    const searchTerm = props.searchTerm;
     function toggleModal (e) {
         // this.setState(state => ({ modalIsOpen: !state.modalIsOpen }));
         const item = !modalIsOpen;
-        console.log(e.target);
+        
+        let imgArr = searchTerm != null ? allImages.filter(thumbnail => thumbnail.tag.toLowerCase().includes(props.searchTerm.toLowerCase()) || thumbnail.caption.toLowerCase().includes(props.searchTerm.toLowerCase())) : allImages;
 
+        setImages(images => imgArr);
+
+        console.log(e.target);
         let x = (e.target.getAttribute("value"));
         setSelectedIndex(selectedIndex =>x);
         setModalIsOpen(modalIsOpen => item);
+
+       
     };
 
-    const searchTerm = props.searchTerm;
-    
+   
+   
     if (props.searchTerm != props.prevSearch) {
         console.log("new Search: " + props.searchTerm, "old search: " + props.prevSearch);
-       
+      
     }
         
     return (
