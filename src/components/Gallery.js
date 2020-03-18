@@ -37,8 +37,8 @@ function Gallery(props) {
     const [images, setImages] = useState(
         [
         {
-            src: photo01,
-            title: "Hay Bales",
+                src: photo01,
+                tag: "Hay Bales",
             caption: "I love hay bales. Took this snap on a drive through the countryside past some straw fields.",
             thumbnail: thumbnail01
         },
@@ -122,21 +122,10 @@ function Gallery(props) {
     };
 
     const searchTerm = props.searchTerm;
-    function performSearch() {
-       
-            let newImages = [{
-                src: photo05,
-                tag: "Desert",
-                caption: "The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons.",
-                thumbnail: thumbnail05
-            }];
-            setImages(images => newImages);
-
-       
-    }
+    
     if (props.searchTerm != props.prevSearch) {
         console.log("new Search: " + props.searchTerm, "old search: " + props.prevSearch);
-      
+       
     }
         
     return (
@@ -156,7 +145,7 @@ function Gallery(props) {
             <GalleryDiv className="Gallery">
 
                 <Images
-                    images={images} toggleModal={toggleModal} 
+                    images={images} toggleModal={toggleModal} searchTerm={searchTerm}
             />
 
             </GalleryDiv>
